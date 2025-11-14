@@ -9,8 +9,8 @@ shipd = read.csv("shipdata2025-09-20.csv") ## Read in the ship data
 bbox = sf::st_bbox(c(xmax=max(shipd$GPS_Long)+0.001,xmin=min(shipd$GPS_Long)-0.001,ymax=max(shipd$GPS_Lat)+0.001,ymin=min(shipd$GPS_Lat))-0.0001,crs=4623)
 #get tiles
 tiles_map <- get_tiles(x = bbox, provider = "CartoDB.Voyager",zoom=14, crop=TRUE)
-pdf("shipmap.pdf")  # also jpg() png()  pdf() ## IF you want to save map to file
-#plot_tiles(tiles_map) # Plot the tiles
+#pdf("shipmap.pdf")  # also jpg() png()  pdf() ## IF you want to save map to file
+plot_tiles(tiles_map) # Plot the tiles
 lines(shipd$GPS_Long,shipd$GPS_Lat,lwd=2,col=c("blue")) # ship track
 #dev.off() # only if saving to file
 #system2("open","shipmap.pdf")
